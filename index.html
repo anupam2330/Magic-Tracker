@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Magic Tracker - The ultimate professional remote control solution.">
+    <title>Magic Tracker | Enterprise Edition</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        bg: { main: '#050505' },
+                        brand: { blue: '#00d2ff', purple: '#9d00ff' }
+                    },
+                    backgroundImage: {
+                        'glass-gradient': 'linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #050505; color: #e5e7eb; overflow-x: hidden; }
+        
+        /* Intro Animation */
+        .intro-word { opacity: 0; display: inline-block; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        
+        /* Glass Panel Styling */
+        .glass-panel {
+            background: var(--glass-gradient);
+            backdrop-filter: blur(12px);
+            border: 1px solid transparent; 
+            transition: all 0.4s ease;
+        }
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+        }
+        
+        section { padding: 100px 24px; }
+
+        /* Developer Image Hover */
+        .dev-overlay { opacity: 0; transition: all 0.5s ease; }
+        .dev-card:hover .dev-overlay { opacity: 1; }
+        .dev-card:hover img { transform: scale(1.03); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="intro-overlay" class="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center transition-all duration-1000 ease-in-out">
+        
+        <img src="codepic.png" alt="BG" class="absolute inset-0 w-full h-full object-cover blur-[60px] opacity-30 scale-110 pointer-events-none">
+
+        <div class="relative z-10 flex flex-col items-center">
+            <div class="relative w-28 h-28 mb-8 animate-[ping_1s_ease-in-out_reverse]">
+                <img src="logo.png" alt="Logo" class="w-full h-full object-cover rounded-full shadow-2xl bg-black p-1">
+            </div>
+
+            <h1 id="intro-text" class="text-6xl md:text-8xl font-extrabold text-white tracking-tight drop-shadow-2xl">
+                <span class="intro-word mr-4">Magic</span>
+                <span class="intro-word">Tracker</span>
+            </h1>
+
+            <p class="font-sans text-brand-blue text-xs tracking-[0.4em] uppercase mt-8 opacity-0 transition-opacity duration-1000 delay-1000 font-bold" id="intro-sub">
+                by Anupam Sahoo
+            </p>
+        </div>
+    </div>
+
+
+    <main id="main-content" class="opacity-0 transition-opacity duration-1000 relative">
+
+        <nav class="fixed top-0 w-full z-50 bg-bg-main/80 backdrop-blur-xl border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <img src="logo.png" alt="Logo" class="w-8 h-8 rounded-full">
+                    <span class="font-bold text-lg tracking-wider uppercase text-white">Magic Tracker</span>
+                </div>
+                <div class="hidden lg:flex gap-10 text-[11px] font-bold text-gray-400 uppercase tracking-widest">
+                    <a href="#about" class="hover:text-white transition-colors">Vision</a>
+                    <a href="#features" class="hover:text-white transition-colors">Features</a>
+                    <a href="#install" class="hover:text-white transition-colors">Guide</a>
+                </div>
+                <a href="#download-center" class="px-6 py-2 rounded-full bg-brand-blue/10 text-brand-blue hover:bg-brand-blue hover:text-black border border-brand-blue/20 transition-all text-[10px] font-bold uppercase tracking-widest">
+                    Download App
+                </a>
+            </div>
+        </nav>
+
+        <section class="min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden pt-32">
+            
+            <div class="absolute inset-0 z-0">
+                <img src="codepic.png" alt="Background" class="w-full h-full object-cover blur-[50px] opacity-20 scale-105">
+                <div class="absolute inset-0 bg-gradient-to-b from-bg-main/80 via-bg-main/50 to-bg-main"></div>
+            </div>
+            
+            <div class="relative z-10 px-4 max-w-4xl mx-auto">
+                <span class="inline-block mb-6 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-brand-blue text-[10px] font-bold uppercase tracking-[0.2em]">
+                    V1.0 Official Release
+                </span>
+                
+                <h1 class="text-6xl md:text-8xl font-extrabold leading-tight mb-8 tracking-tighter text-white">
+                    Control Your World<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple">Wirelessly.</span>
+                </h1>
+                
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+                    The most advanced local remote control system. Zero latency. Absolute privacy. 
+                    Engineered for professionals who demand precision.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-5 w-full max-w-md mx-auto">
+                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Magic.Tracker.exe" class="flex-1 flex items-center justify-center gap-3 bg-white text-black h-14 rounded-xl font-bold hover:bg-gray-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                        <i class="ri-windows-fill text-xl"></i> Windows
+                    </a>
+                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Mac_App_MagicTracker.zip" class="flex-1 flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md text-white h-14 rounded-xl font-bold hover:bg-white/20 transition-colors border border-white/10">
+                        <i class="ri-apple-fill text-xl"></i> macOS
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="text-xs text-brand-blue font-bold uppercase tracking-widest mb-4">The Philosophy</h2>
+                    <h3 class="text-4xl font-bold mb-8 text-white">Why Magic Tracker?</h3>
+                    <div class="space-y-6 text-gray-400 text-base leading-relaxed font-light">
+                        <p>We believe that switching devices kills productivity. Magic Tracker bridges the gap between your phone and computer, creating a unified workflow.</p>
+                        <p>Unlike other tools that rely on the internet, our <b>Direct Socket Technology</b> operates entirely on your local network. This means your data never leaves the room, and the connection is instantaneous.</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-8 rounded-3xl aspect-square flex flex-col items-center justify-center text-center">
+                    <i class="ri-wifi-line text-6xl text-brand-blue mb-6"></i>
+                    <h4 class="text-2xl font-bold text-white">Local Core</h4>
+                    <p class="text-sm text-gray-500 mt-2 max-w-xs">No Cloud. No Lag. Just pure speed.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-20">
+                    <h2 class="text-xs text-brand-purple font-bold uppercase tracking-widest mb-4">Capabilities</h2>
+                    <h3 class="text-4xl font-bold text-white">System Features</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-panel p-10 rounded-2xl">
+                        <i class="ri-flashlight-fill text-4xl text-brand-blue mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Zero Latency</h4>
+                        <p class="text-sm text-gray-400">Sub-10ms response times via custom UDP protocol.</p>
+                    </div>
+                    <div class="glass-panel p-10 rounded-2xl">
+                        <i class="ri-shield-check-fill text-4xl text-brand-purple mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Secure Core</h4>
+                        <p class="text-sm text-gray-400">Isolated local network connection with dynamic PIN.</p>
+                    </div>
+                    <div class="glass-panel p-10 rounded-2xl">
+                        <i class="ri-fingerprint-fill text-4xl text-white mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Multi-Touch</h4>
+                        <p class="text-sm text-gray-400">Two-finger scroll, zoom, and gestures support.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="download-center" class="min-h-screen flex flex-col justify-center items-center bg-[#080808] border-t border-white/5">
+            <div class="text-center mb-16">
+                <span class="text-brand-blue text-xs font-bold uppercase tracking-widest">Select Your Platform</span>
+                <h2 class="text-5xl md:text-6xl font-extrabold text-white mt-4">Download Center</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full px-6">
+                
+                <div class="glass-panel p-12 rounded-3xl text-center group hover:bg-blue-900/10">
+                    <i class="ri-windows-fill text-6xl text-blue-500 mb-6 group-hover:scale-110 transition-transform inline-block"></i>
+                    <h3 class="text-3xl font-bold text-white mb-2">Windows</h3>
+                    <p class="text-gray-500 text-sm mb-8">Windows 10 / 11 (64-bit)</p>
+                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Magic.Tracker.exe" class="block w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all shadow-lg shadow-blue-900/50">
+                        Download .exe
+                    </a>
+                </div>
+
+                <div class="glass-panel p-12 rounded-3xl text-center group hover:bg-white/5">
+                    <i class="ri-apple-fill text-6xl text-white mb-6 group-hover:scale-110 transition-transform inline-block"></i>
+                    <h3 class="text-3xl font-bold text-white mb-2">macOS</h3>
+                    <p class="text-gray-500 text-sm mb-8">Intel & Apple Silicon</p>
+                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Mac_App_MagicTracker.zip" class="block w-full py-4 rounded-xl bg-white hover:bg-gray-200 text-black font-bold transition-all shadow-lg shadow-white/20">
+                        Download .zip
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="install" class="max-w-5xl mx-auto">
+            <div class="mb-20 text-center">
+                <h2 class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-4">Setup Protocol</h2>
+                <h3 class="text-4xl font-bold text-white">Installation Guide</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="glass-panel p-10 rounded-3xl border-t-4 border-blue-500">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i class="ri-windows-fill text-3xl text-blue-500"></i>
+                        <h3 class="text-2xl font-bold text-white">Windows Setup</h3>
+                    </div>
+                    <ol class="space-y-6 text-gray-400 text-sm list-decimal list-inside marker:text-blue-500 marker:font-bold">
+                        <li class="pl-2">Download the <b>Magic.Tracker.exe</b> file.</li>
+                        <li class="pl-2">Double-click to run. If "Windows protected your PC" appears, click <u>More info</u> then <u>Run anyway</u>.</li>
+                        <li class="pl-2">If Windows Firewall asks, allow access for <b>Private Networks</b> (Home Wi-Fi).</li>
+                        <li class="pl-2">The app will open and show a 4-digit PIN.</li>
+                    </ol>
+                </div>
+                
+                <div class="glass-panel p-10 rounded-3xl border-t-4 border-white">
+                    <div class="flex items-center gap-4 mb-8">
+                        <i class="ri-apple-fill text-3xl text-white"></i>
+                        <h3 class="text-2xl font-bold text-white">macOS Setup</h3>
+                    </div>
+                    <ol class="space-y-6 text-gray-400 text-sm list-decimal list-inside marker:text-white marker:font-bold">
+                        <li class="pl-2">Download and unzip <b>Mac_App_MagicTracker.zip</b>.</li>
+                        <li class="pl-2">Drag <b>Magic Tracker.app</b> into your <b>Applications</b> folder.</li>
+                        <li class="pl-2">
+                            <b>Important Security Step:</b> Open Terminal and paste this command to fix "Damaged/Unverified" error:
+                            <div class="mt-3 bg-black/80 p-3 rounded border border-white/10 font-mono text-[11px] text-green-400 select-all break-all">
+                                sudo xattr -rd com.apple.quarantine /Applications/"Magic Tracker.app"
+                            </div>
+                        </li>
+                        <li class="pl-2">Open the app. Go to <b>System Settings > Privacy & Security > Accessibility</b> and allow Magic Tracker.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="developer" class="py-32 border-t border-white/5 text-center">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-12">Lead Architect</h2>
+                
+                <a href="https://www.linkedin.com/in/anupam-sahoo-39a694355/" target="_blank" class="dev-card inline-block relative group cursor-pointer">
+                    <div class="w-64 h-80 md:w-72 md:h-96 rounded-2xl overflow-hidden relative border border-white/10">
+                        <img src="me.png" alt="Anupam Sahoo" class="w-full h-full object-cover transition-transform duration-700 saturate-[0.8] group-hover:saturate-100">
+                        <div class="dev-overlay absolute inset-0 bg-black/40 flex items-center justify-center backdrop-blur-[2px]">
+                            <div class="bg-white/10 p-4 rounded-full backdrop-blur-md border border-white/20">
+                                <i class="ri-linkedin-fill text-4xl text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <h3 class="text-3xl font-bold mt-10 text-white">Anupam Sahoo</h3>
+                <p class="text-brand-blue text-xs font-bold uppercase tracking-widest mt-2">Founder & Lead Developer</p>
+            </div>
+        </section>
+
+        <footer class="py-12 text-center bg-black border-t border-white/5">
+            <img src="logo.png" alt="Logo" class="w-8 h-8 rounded-full mx-auto mb-6 grayscale opacity-30">
+            <p class="text-gray-600 text-xs">
+                © 2026 Magic Tracker Systems.
+            </p>
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const introOverlay = document.getElementById('intro-overlay');
+            const introWords = document.querySelectorAll('.intro-word');
+            const introSub = document.getElementById('intro-sub');
+            const mainContent = document.getElementById('main-content');
+
+            introWords.forEach((word, index) => {
+                setTimeout(() => {
+                    word.classList.add('animate-[fadeInUp_0.8s_ease-out_forwards]');
+                }, 800 + (index * 400));
+            });
+
+            setTimeout(() => { introSub.style.opacity = '1'; }, 2000);
+            setTimeout(() => {
+                introOverlay.style.opacity = '0';
+                introOverlay.style.pointerEvents = 'none';
+                mainContent.style.opacity = '1';
+            }, 4000);
+        });
+    </script>
+
+</body>
+</html>
