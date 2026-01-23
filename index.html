@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Magic Tracker - The ultimate professional remote control solution.">
-    <title>Magic Tracker | Enterprise Edition</title>
+    
+    <title>Magic Tracker by Anupam</title>
     
     <link rel="icon" type="image/png" href="logo.png">
 
@@ -53,31 +54,38 @@
             background: var(--glass-gradient);
             backdrop-filter: blur(12px);
             border: 1px solid transparent; 
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glass-panel:hover {
             border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6);
         }
         
-        section { padding: 100px 24px; }
+        section { padding: 100px 24px; position: relative; z-index: 10; }
 
         /* Developer Image Hover */
         .dev-overlay { opacity: 0; transition: all 0.5s ease; }
         .dev-card:hover .dev-overlay { opacity: 1; }
         .dev-card:hover img { transform: scale(1.03); }
+        
+        /* Hidden Features Transition */
+        #extra-features { transition: all 0.5s ease-in-out; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased relative">
 
-    <div id="intro-overlay" class="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center transition-all duration-1000 ease-in-out">
-        
-        <img src="codepic.png" alt="BG" class="absolute inset-0 w-full h-full object-cover blur-[60px] opacity-30 scale-110 pointer-events-none">
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <img src="codepic.png" alt="Global BG" class="w-full h-full object-cover blur-[80px] opacity-15 scale-110">
+    </div>
+
+    <div id="intro-overlay" class="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center transition-all duration-1000 ease-in-out overflow-hidden">
+        <img src="codepic.png" alt="Intro BG" class="absolute inset-0 w-full h-full object-cover blur-[50px] opacity-40 scale-110 pointer-events-none">
+        <div class="absolute inset-0 bg-black/40"></div>
 
         <div class="relative z-10 flex flex-col items-center">
             <div class="relative w-28 h-28 mb-8 animate-[ping_1s_ease-in-out_reverse]">
-                <img src="logo.png" alt="Logo" class="w-full h-full object-cover rounded-full shadow-2xl bg-black p-1">
+                <img src="logo.png" alt="Logo" class="w-full h-full object-cover rounded-full shadow-2xl bg-black p-1 border border-white/10">
             </div>
 
             <h1 id="intro-text" class="text-6xl md:text-8xl font-extrabold text-white tracking-tight drop-shadow-2xl">
@@ -92,12 +100,12 @@
     </div>
 
 
-    <main id="main-content" class="opacity-0 transition-opacity duration-1000 relative">
+    <main id="main-content" class="opacity-0 transition-opacity duration-1000 relative z-10">
 
         <nav class="fixed top-0 w-full z-50 bg-bg-main/80 backdrop-blur-xl border-b border-white/5">
             <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <img src="logo.png" alt="Logo" class="w-8 h-8 rounded-full">
+                    <img src="logo.png" alt="Logo" class="w-8 h-8 rounded-full border border-white/10">
                     <span class="font-bold text-lg tracking-wider uppercase text-white">Magic Tracker</span>
                 </div>
                 <div class="hidden lg:flex gap-10 text-[11px] font-bold text-gray-400 uppercase tracking-widest">
@@ -112,9 +120,8 @@
         </nav>
 
         <section class="min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden pt-32">
-            
             <div class="absolute inset-0 z-0">
-                <img src="codepic.png" alt="Background" class="w-full h-full object-cover blur-[50px] opacity-20 scale-105">
+                <img src="codepic.png" alt="Hero BG" class="w-full h-full object-cover blur-[60px] opacity-20 scale-105">
                 <div class="absolute inset-0 bg-gradient-to-b from-bg-main/80 via-bg-main/50 to-bg-main"></div>
             </div>
             
@@ -134,10 +141,10 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-5 w-full max-w-md mx-auto">
-                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Magic.Tracker.exe" class="flex-1 flex items-center justify-center gap-3 bg-white text-black h-14 rounded-xl font-bold hover:bg-gray-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Magic.Tracker.exe" class="glass-panel flex-1 flex items-center justify-center gap-3 bg-white text-black h-14 rounded-xl font-bold hover:bg-white transition-all">
                         <i class="ri-windows-fill text-xl"></i> Windows
                     </a>
-                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Mac_App_MagicTracker.zip" class="flex-1 flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md text-white h-14 rounded-xl font-bold hover:bg-white/20 transition-colors border border-white/10">
+                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Mac_App_MagicTracker.zip" class="glass-panel flex-1 flex items-center justify-center gap-3 bg-white/10 text-white h-14 rounded-xl font-bold hover:bg-white/20 transition-all">
                         <i class="ri-apple-fill text-xl"></i> macOS
                     </a>
                 </div>
@@ -154,7 +161,7 @@
                         <p>Unlike other tools that rely on the internet, our <b>Direct Socket Technology</b> operates entirely on your local network. This means your data never leaves the room, and the connection is instantaneous.</p>
                     </div>
                 </div>
-                <div class="glass-panel p-8 rounded-3xl aspect-square flex flex-col items-center justify-center text-center">
+                <div class="glass-panel p-8 rounded-3xl aspect-square flex flex-col items-center justify-center text-center cursor-pointer">
                     <i class="ri-wifi-line text-6xl text-brand-blue mb-6"></i>
                     <h4 class="text-2xl font-bold text-white">Local Core</h4>
                     <p class="text-sm text-gray-500 mt-2 max-w-xs">No Cloud. No Lag. Just pure speed.</p>
@@ -168,35 +175,75 @@
                     <h2 class="text-xs text-brand-purple font-bold uppercase tracking-widest mb-4">Capabilities</h2>
                     <h3 class="text-4xl font-bold text-white">System Features</h3>
                 </div>
+                
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="glass-panel p-10 rounded-2xl">
+                    <div class="glass-panel p-10 rounded-2xl cursor-pointer">
                         <i class="ri-flashlight-fill text-4xl text-brand-blue mb-6 inline-block"></i>
                         <h4 class="text-xl font-bold text-white mb-4">Zero Latency</h4>
                         <p class="text-sm text-gray-400">Sub-10ms response times via custom UDP protocol.</p>
                     </div>
-                    <div class="glass-panel p-10 rounded-2xl">
+                    <div class="glass-panel p-10 rounded-2xl cursor-pointer">
                         <i class="ri-shield-check-fill text-4xl text-brand-purple mb-6 inline-block"></i>
                         <h4 class="text-xl font-bold text-white mb-4">Secure Core</h4>
                         <p class="text-sm text-gray-400">Isolated local network connection with dynamic PIN.</p>
                     </div>
-                    <div class="glass-panel p-10 rounded-2xl">
+                    <div class="glass-panel p-10 rounded-2xl cursor-pointer">
                         <i class="ri-fingerprint-fill text-4xl text-white mb-6 inline-block"></i>
                         <h4 class="text-xl font-bold text-white mb-4">Multi-Touch</h4>
                         <p class="text-sm text-gray-400">Two-finger scroll, zoom, and gestures support.</p>
                     </div>
                 </div>
+
+                <div id="extra-features" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="glass-panel p-10 rounded-2xl cursor-pointer">
+                        <i class="ri-shut-down-line text-4xl text-red-500 mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Power Control</h4>
+                        <p class="text-sm text-gray-400">Remote Shutdown, Restart, and Sleep directly from your phone.</p>
+                    </div>
+                    <div class="glass-panel p-10 rounded-2xl cursor-pointer">
+                        <i class="ri-movie-fill text-4xl text-yellow-400 mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Media Controller</h4>
+                        <p class="text-sm text-gray-400">Play/Pause videos, adjust volume, and skip tracks seamlessly.</p>
+                    </div>
+                    <div class="glass-panel p-10 rounded-2xl cursor-pointer">
+                        <i class="ri-keyboard-box-fill text-4xl text-green-400 mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Smart Keyboard</h4>
+                        <p class="text-sm text-gray-400">Type on your phone's keyboard and see it appear on your PC instantly.</p>
+                    </div>
+                    <div class="glass-panel p-10 rounded-2xl cursor-pointer">
+                        <i class="ri-cast-line text-4xl text-blue-400 mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Screen Mirroring</h4>
+                        <p class="text-sm text-gray-400">High-FPS screen mirroring for precise cursor tracking.</p>
+                    </div>
+                    <div class="glass-panel p-10 rounded-2xl cursor-pointer">
+                        <i class="ri-terminal-window-line text-4xl text-orange-400 mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Command Execution</h4>
+                        <p class="text-sm text-gray-400">Execute custom terminal commands remotely.</p>
+                    </div>
+                     <div class="glass-panel p-10 rounded-2xl cursor-pointer">
+                        <i class="ri-moon-clear-fill text-4xl text-gray-400 mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Dark Mode Native</h4>
+                        <p class="text-sm text-gray-400">Optimized UI that saves battery on OLED screens.</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <button id="view-more-btn" class="px-8 py-3 rounded-full border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs transition-all duration-300">
+                        View All Features
+                    </button>
+                </div>
+
             </div>
         </section>
 
-        <section id="download-center" class="min-h-screen flex flex-col justify-center items-center bg-[#080808] border-t border-white/5">
-            <div class="text-center mb-16">
+        <section id="download-center" class="min-h-screen flex flex-col justify-center items-center border-t border-white/5 relative">
+            <div class="text-center mb-16 relative z-10">
                 <span class="text-brand-blue text-xs font-bold uppercase tracking-widest">Select Your Platform</span>
                 <h2 class="text-5xl md:text-6xl font-extrabold text-white mt-4">Download Center</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full px-6">
-                
-                <div class="glass-panel p-12 rounded-3xl text-center group hover:bg-blue-900/10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full px-6 relative z-10">
+                <div class="glass-panel p-12 rounded-3xl text-center group">
                     <i class="ri-windows-fill text-6xl text-blue-500 mb-6 group-hover:scale-110 transition-transform inline-block"></i>
                     <h3 class="text-3xl font-bold text-white mb-2">Windows</h3>
                     <p class="text-gray-500 text-sm mb-8">Windows 10 / 11 (64-bit)</p>
@@ -205,7 +252,7 @@
                     </a>
                 </div>
 
-                <div class="glass-panel p-12 rounded-3xl text-center group hover:bg-white/5">
+                <div class="glass-panel p-12 rounded-3xl text-center group">
                     <i class="ri-apple-fill text-6xl text-white mb-6 group-hover:scale-110 transition-transform inline-block"></i>
                     <h3 class="text-3xl font-bold text-white mb-2">macOS</h3>
                     <p class="text-gray-500 text-sm mb-8">Intel & Apple Silicon</p>
@@ -223,7 +270,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="glass-panel p-10 rounded-3xl border-t-4 border-blue-500">
+                <div class="glass-panel p-10 rounded-3xl border-t-4 border-blue-500 cursor-pointer">
                     <div class="flex items-center gap-4 mb-8">
                         <i class="ri-windows-fill text-3xl text-blue-500"></i>
                         <h3 class="text-2xl font-bold text-white">Windows Setup</h3>
@@ -236,7 +283,7 @@
                     </ol>
                 </div>
                 
-                <div class="glass-panel p-10 rounded-3xl border-t-4 border-white">
+                <div class="glass-panel p-10 rounded-3xl border-t-4 border-white cursor-pointer">
                     <div class="flex items-center gap-4 mb-8">
                         <i class="ri-apple-fill text-3xl text-white"></i>
                         <h3 class="text-2xl font-bold text-white">macOS Setup</h3>
@@ -260,8 +307,8 @@
             <div class="max-w-2xl mx-auto">
                 <h2 class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-12">Lead Architect</h2>
                 
-                <a href="https://www.linkedin.com/in/anupam-sahoo-39a694355/" target="_blank" class="dev-card inline-block relative group cursor-pointer">
-                    <div class="w-64 h-80 md:w-72 md:h-96 rounded-2xl overflow-hidden relative border border-white/10">
+                <a href="https://www.linkedin.com/in/anupam-sahoo-39a694355/" target="_blank" class="dev-card inline-block relative group cursor-pointer glass-panel rounded-2xl p-2 border-0">
+                    <div class="w-64 h-80 md:w-72 md:h-96 rounded-xl overflow-hidden relative border border-white/10">
                         <img src="me.png" alt="Anupam Sahoo" class="w-full h-full object-cover transition-transform duration-700 saturate-[0.8] group-hover:saturate-100">
                         <div class="dev-overlay absolute inset-0 bg-black/40 flex items-center justify-center backdrop-blur-[2px]">
                             <div class="bg-white/10 p-4 rounded-full backdrop-blur-md border border-white/20">
@@ -291,7 +338,17 @@
             const introWords = document.querySelectorAll('.intro-word');
             const introSub = document.getElementById('intro-sub');
             const mainContent = document.getElementById('main-content');
+            
+            // Logic for View More Features
+            const viewMoreBtn = document.getElementById('view-more-btn');
+            const extraFeatures = document.getElementById('extra-features');
 
+            viewMoreBtn.addEventListener('click', () => {
+                extraFeatures.classList.remove('hidden');
+                viewMoreBtn.style.display = 'none'; // Hide button after clicking
+            });
+
+            // Intro Animation Logic
             introWords.forEach((word, index) => {
                 setTimeout(() => {
                     word.classList.add('animate-[fadeInUp_0.8s_ease-out_forwards]');
