@@ -75,12 +75,12 @@
 </head>
 <body class="antialiased relative">
 
-    <div class="fixed inset-0 z-0 pointer-events-none">
-        <img src="codepic.png" alt="Global BG" class="w-full h-full object-cover blur-[80px] opacity-15 scale-110">
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <img id="interactive-bg" src="codepic.png" alt="Global BG" class="w-full h-full object-cover blur-[4px] opacity-25 scale-125 transition-transform duration-100 ease-out will-change-transform">
     </div>
 
     <div id="intro-overlay" class="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center transition-all duration-1000 ease-in-out overflow-hidden">
-        <img src="codepic.png" alt="Intro BG" class="absolute inset-0 w-full h-full object-cover blur-[50px] opacity-40 scale-110 pointer-events-none">
+        <img src="codepic.png" alt="Intro BG" class="absolute inset-0 w-full h-full object-cover blur-[20px] opacity-40 scale-110 pointer-events-none">
         <div class="absolute inset-0 bg-black/40"></div>
 
         <div class="relative z-10 flex flex-col items-center">
@@ -120,10 +120,7 @@
         </nav>
 
         <section class="min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden pt-32">
-            <div class="absolute inset-0 z-0">
-                <img src="codepic.png" alt="Hero BG" class="w-full h-full object-cover blur-[60px] opacity-20 scale-105">
-                <div class="absolute inset-0 bg-gradient-to-b from-bg-main/80 via-bg-main/50 to-bg-main"></div>
-            </div>
+            <div class="absolute inset-0 z-0 bg-gradient-to-b from-bg-main/80 via-bg-main/60 to-bg-main"></div>
             
             <div class="relative z-10 px-4 max-w-4xl mx-auto">
                 <span class="inline-block mb-6 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-brand-blue text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -196,39 +193,54 @@
 
                 <div id="extra-features" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                     <div class="glass-panel p-10 rounded-2xl cursor-pointer">
-                        <i class="ri-shut-down-line text-4xl text-red-500 mb-6 inline-block"></i>
-                        <h4 class="text-xl font-bold text-white mb-4">Power Control</h4>
-                        <p class="text-sm text-gray-400">Remote Shutdown, Restart, and Sleep directly from your phone.</p>
-                    </div>
-                    <div class="glass-panel p-10 rounded-2xl cursor-pointer">
-                        <i class="ri-movie-fill text-4xl text-yellow-400 mb-6 inline-block"></i>
-                        <h4 class="text-xl font-bold text-white mb-4">Media Controller</h4>
-                        <p class="text-sm text-gray-400">Play/Pause videos, adjust volume, and skip tracks seamlessly.</p>
+                        <i class="ri-volume-up-fill text-4xl text-yellow-400 mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Volume Control</h4>
+                        <p class="text-sm text-gray-400">Adjust system volume and mute/unmute PC from bed.</p>
                     </div>
                     <div class="glass-panel p-10 rounded-2xl cursor-pointer">
                         <i class="ri-keyboard-box-fill text-4xl text-green-400 mb-6 inline-block"></i>
-                        <h4 class="text-xl font-bold text-white mb-4">Smart Keyboard</h4>
-                        <p class="text-sm text-gray-400">Type on your phone's keyboard and see it appear on your PC instantly.</p>
+                        <h4 class="text-xl font-bold text-white mb-4">Live Typing</h4>
+                        <p class="text-sm text-gray-400">Real-time keyboard input from phone to PC.</p>
                     </div>
                     <div class="glass-panel p-10 rounded-2xl cursor-pointer">
-                        <i class="ri-cast-line text-4xl text-blue-400 mb-6 inline-block"></i>
-                        <h4 class="text-xl font-bold text-white mb-4">Screen Mirroring</h4>
-                        <p class="text-sm text-gray-400">High-FPS screen mirroring for precise cursor tracking.</p>
+                        <i class="ri-shut-down-line text-4xl text-red-500 mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Remote Actions</h4>
+                        <p class="text-sm text-gray-400">Shut down, Restart, or Sleep your PC remotely.</p>
                     </div>
                     <div class="glass-panel p-10 rounded-2xl cursor-pointer">
-                        <i class="ri-terminal-window-line text-4xl text-orange-400 mb-6 inline-block"></i>
-                        <h4 class="text-xl font-bold text-white mb-4">Command Execution</h4>
-                        <p class="text-sm text-gray-400">Execute custom terminal commands remotely.</p>
+                        <i class="ri-radar-fill text-4xl text-blue-400 mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Auto-Discovery</h4>
+                        <p class="text-sm text-gray-400">Automatically finds your PC on the network.</p>
+                    </div>
+                    <div class="glass-panel p-10 rounded-2xl cursor-pointer">
+                        <i class="ri-vibrate-fill text-4xl text-orange-400 mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Haptic Feedback</h4>
+                        <p class="text-sm text-gray-400">Feel every click with precise vibration response.</p>
+                    </div>
+                    <div class="glass-panel p-10 rounded-2xl cursor-pointer">
+                        <i class="ri-battery-charge-fill text-4xl text-teal-400 mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Battery Saver</h4>
+                        <p class="text-sm text-gray-400">OLED-black UI optimized to minimize phone battery drain.</p>
+                    </div>
+                    <div class="glass-panel p-10 rounded-2xl cursor-pointer">
+                        <i class="ri-user-unfollow-fill text-4xl text-pink-500 mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">No Account Needed</h4>
+                        <p class="text-sm text-gray-400">No sign-ups or logins. Just connect and control.</p>
+                    </div>
+                    <div class="glass-panel p-10 rounded-2xl cursor-pointer">
+                        <i class="ri-settings-4-fill text-4xl text-gray-400 mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Cursor Sensitivity</h4>
+                        <p class="text-sm text-gray-400">Adjust mouse speed for precision or fast movement.</p>
                     </div>
                      <div class="glass-panel p-10 rounded-2xl cursor-pointer">
-                        <i class="ri-moon-clear-fill text-4xl text-gray-400 mb-6 inline-block"></i>
-                        <h4 class="text-xl font-bold text-white mb-4">Dark Mode Native</h4>
-                        <p class="text-sm text-gray-400">Optimized UI that saves battery on OLED screens.</p>
+                        <i class="ri-github-fill text-4xl text-white mb-6 inline-block"></i>
+                        <h4 class="text-xl font-bold text-white mb-4">Open Source</h4>
+                        <p class="text-sm text-gray-400">Transparent code base. Built for developers, by developers.</p>
                     </div>
                 </div>
 
                 <div class="text-center mt-12">
-                    <button id="view-more-btn" class="px-8 py-3 rounded-full border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs transition-all duration-300">
+                    <button id="toggle-features-btn" class="px-8 py-3 rounded-full border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs transition-all duration-300">
                         View All Features
                     </button>
                 </div>
@@ -339,13 +351,23 @@
             const introSub = document.getElementById('intro-sub');
             const mainContent = document.getElementById('main-content');
             
-            // Logic for View More Features
-            const viewMoreBtn = document.getElementById('view-more-btn');
+            // 2. Logic for Show More / Show Less Features
+            const toggleBtn = document.getElementById('toggle-features-btn');
             const extraFeatures = document.getElementById('extra-features');
+            const featuresSection = document.getElementById('features');
 
-            viewMoreBtn.addEventListener('click', () => {
-                extraFeatures.classList.remove('hidden');
-                viewMoreBtn.style.display = 'none'; // Hide button after clicking
+            toggleBtn.addEventListener('click', () => {
+                if (extraFeatures.classList.contains('hidden')) {
+                    // Open
+                    extraFeatures.classList.remove('hidden');
+                    toggleBtn.innerText = 'Show Less';
+                } else {
+                    // Close
+                    extraFeatures.classList.add('hidden');
+                    toggleBtn.innerText = 'View All Features';
+                    // Optional: smooth scroll back to features section
+                    featuresSection.scrollIntoView({ behavior: 'smooth' });
+                }
             });
 
             // Intro Animation Logic
@@ -361,6 +383,29 @@
                 introOverlay.style.pointerEvents = 'none';
                 mainContent.style.opacity = '1';
             }, 4000);
+
+            // 3. BACKGROUND PARALLAX (MOUSE + SCROLL - FIXED ISSUE)
+            const bg = document.getElementById('interactive-bg');
+            let mouseX = 0, mouseY = 0;
+            
+            // Track Mouse
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (window.innerWidth - e.pageX * 2) / 90;
+                mouseY = (window.innerHeight - e.pageY * 2) / 90;
+                updateBg();
+            });
+
+            // Track Scroll
+            document.addEventListener('scroll', () => {
+                updateBg();
+            });
+
+            function updateBg() {
+                // We use a small scroll factor. Since the element is 'fixed', 
+                // we simulate movement without it running off screen.
+                const scrollOffset = window.scrollY * 0.05; 
+                bg.style.transform = `scale(1.25) translate(${mouseX}px, ${mouseY - scrollOffset}px)`;
+            }
         });
     </script>
 
