@@ -1,0 +1,8 @@
+flask
+mss
+numpy
+pillow
+pyautogui
+pyinstaller
+psutil
+opencv-python
