@@ -1,4 +1,4 @@
-name: Build Magic Tracker Apps
+name: Build Magic Tracker Ultimate
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   # ------------------------------------
-  # 1. WINDOWS APP BUILDER
+  # 1. WINDOWS APP BUILDER (EXE)
   # ------------------------------------
   build-windows:
     runs-on: windows-latest
@@ -20,23 +20,24 @@ jobs:
           python-version: '3.10'
 
       - name: Install Dependencies
-        # মনে রেখো: তোমার ফাইলের নাম requirements.txt হতে হবে, .rtf নয়
         run: |
           pip install -r requirements.txt
 
       - name: Build Windows EXE
-        # অ্যাপের নাম 'Magic Tracker' করা হলো
+        # --onefile মানে একটাই ফাইল হবে
+        # --noconsole মানে কালো স্ক্রিন আসবে না
         run: |
           pyinstaller --noconsole --onefile --icon=logo.ico --name "Magic Tracker" windows_track.py
 
       - name: Upload Windows App
         uses: actions/upload-artifact@v4
         with:
-          name: MagicTracker_Windows_Version
+          name: Windows_App_MagicTracker
           path: dist/Magic Tracker.exe
+          # এটা ডাউনলোড করে আনজিপ করলে তুমি সরাসরি 'Magic Tracker.exe' পাবে।
 
   # ------------------------------------
-  # 2. MAC APP BUILDER
+  # 2. MAC APP BUILDER (APP Bundle)
   # ------------------------------------
   build-macos:
     runs-on: macos-latest
@@ -53,12 +54,20 @@ jobs:
           pip install -r requirements.txt
 
       - name: Build Mac App
-        # অ্যাপের নাম 'Magic Tracker' করা হলো
+        # --windowed মানে এটা ম্যাক অ্যাপ হিসেবে তৈরি হবে
         run: |
-          pyinstaller --windowed --onefile --icon=logo.icns --name "Magic Tracker" mac_track.py
+          pyinstaller --windowed --noconsole --icon=logo.icns --name "Magic Tracker" mac_track.py
+
+      # --- SPECIAL STEP: ZIP FOR MAC ---
+      # এটা ম্যাকের অ্যাপটাকে সঠিকভাবে জিপ করবে যাতে লোগো নষ্ট না হয়
+      - name: Zip the Mac App
+        run: |
+          cd dist
+          ditto -c -k --sequesterRsrc --keepParent "Magic Tracker.app" "MagicTracker_Mac.zip"
 
       - name: Upload Mac App
         uses: actions/upload-artifact@v4
         with:
-          name: MagicTracker_Mac_Version
-          path: dist/Magic Tracker.app
+          name: Mac_App_MagicTracker
+          path: dist/MagicTracker_Mac.zip
+          # এটা ডাউনলোড করলে তুমি একটা জিপ পাবে, সেটা খুললে সরাসরি 'Magic Tracker' অ্যাপটা লোগোসহ বেরিয়ে আসবে।
