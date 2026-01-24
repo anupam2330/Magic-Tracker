@@ -62,6 +62,13 @@
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6);
         }
         
+        /* 3. CLICK ANIMATION (Button Press Effect) */
+        .click-anim:active {
+            transform: scale(0.95);
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: transform 0.1s ease-in-out;
+        }
+        
         section { padding: 100px 24px; position: relative; z-index: 10; }
 
         /* Developer Image Hover */
@@ -113,7 +120,7 @@
                     <a href="#features" class="hover:text-white transition-colors">Features</a>
                     <a href="#install" class="hover:text-white transition-colors">Guide</a>
                 </div>
-                <a href="#download-center" class="px-6 py-2 rounded-full bg-brand-blue/10 text-brand-blue hover:bg-brand-blue hover:text-black border border-brand-blue/20 transition-all text-[10px] font-bold uppercase tracking-widest">
+                <a href="#download-center" class="click-anim px-6 py-2 rounded-full bg-brand-blue/10 text-brand-blue hover:bg-brand-blue hover:text-black border border-brand-blue/20 transition-all text-[10px] font-bold uppercase tracking-widest">
                     Download App
                 </a>
             </div>
@@ -138,10 +145,10 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-5 w-full max-w-md mx-auto">
-                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Magic.Tracker.exe" class="glass-panel flex-1 flex items-center justify-center gap-3 bg-white text-black h-14 rounded-xl font-bold hover:bg-white transition-all">
+                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Windows_App_MagicTracker.zip" class="click-anim glass-panel flex-1 flex items-center justify-center gap-3 bg-white text-black h-14 rounded-xl font-bold hover:bg-white transition-all">
                         <i class="ri-windows-fill text-xl"></i> Windows
                     </a>
-                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Mac_App_MagicTracker.zip" class="glass-panel flex-1 flex items-center justify-center gap-3 bg-white/10 text-white h-14 rounded-xl font-bold hover:bg-white/20 transition-all">
+                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Mac_App_MagicTracker.zip" class="click-anim glass-panel flex-1 flex items-center justify-center gap-3 bg-white/10 text-white h-14 rounded-xl font-bold hover:bg-white/20 transition-all">
                         <i class="ri-apple-fill text-xl"></i> macOS
                     </a>
                 </div>
@@ -240,7 +247,7 @@
                 </div>
 
                 <div class="text-center mt-12">
-                    <button id="toggle-features-btn" class="px-8 py-3 rounded-full border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs transition-all duration-300">
+                    <button id="toggle-features-btn" class="click-anim px-8 py-3 rounded-full border border-white/20 hover:bg-white hover:text-black text-white font-bold uppercase tracking-widest text-xs transition-all duration-300">
                         View All Features
                     </button>
                 </div>
@@ -259,7 +266,7 @@
                     <i class="ri-windows-fill text-6xl text-blue-500 mb-6 group-hover:scale-110 transition-transform inline-block"></i>
                     <h3 class="text-3xl font-bold text-white mb-2">Windows</h3>
                     <p class="text-gray-500 text-sm mb-8">Windows 10 / 11 (64-bit)</p>
-                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Magic.Tracker.exe" class="block w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all shadow-lg shadow-blue-900/50">
+                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Windows_App_MagicTracker.zip" class="click-anim block w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all shadow-lg shadow-blue-900/50">
                         Download .exe
                     </a>
                 </div>
@@ -268,7 +275,7 @@
                     <i class="ri-apple-fill text-6xl text-white mb-6 group-hover:scale-110 transition-transform inline-block"></i>
                     <h3 class="text-3xl font-bold text-white mb-2">macOS</h3>
                     <p class="text-gray-500 text-sm mb-8">Intel & Apple Silicon</p>
-                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Mac_App_MagicTracker.zip" class="block w-full py-4 rounded-xl bg-white hover:bg-gray-200 text-black font-bold transition-all shadow-lg shadow-white/20">
+                    <a href="https://github.com/anupam2330/Magic-Tracker/releases/download/v.1.0/Mac_App_MagicTracker.zip" class="click-anim block w-full py-4 rounded-xl bg-white hover:bg-gray-200 text-black font-bold transition-all shadow-lg shadow-white/20">
                         Download .zip
                     </a>
                 </div>
@@ -288,10 +295,10 @@
                         <h3 class="text-2xl font-bold text-white">Windows Setup</h3>
                     </div>
                     <ol class="space-y-6 text-gray-400 text-sm list-decimal list-inside marker:text-blue-500 marker:font-bold">
-                        <li class="pl-2">Download the <b>Magic.Tracker.exe</b> file.</li>
-                        <li class="pl-2">Double-click to run. If "Windows protected your PC" appears, click <u>More info</u> then <u>Run anyway</u>.</li>
-                        <li class="pl-2">If Windows Firewall asks, allow access for <b>Private Networks</b> (Home Wi-Fi).</li>
-                        <li class="pl-2">The app will open and show a 4-digit PIN.</li>
+                        <li class="pl-2">Download the <b>Windows_App_MagicTracker.zip</b> file.</li>
+                        <li class="pl-2"><b>Extract (Unzip)</b> the folder. Do not run from inside the zip.</li>
+                        <li class="pl-2">Double-click <b>Magic Tracker.exe</b>.</li>
+                        <li class="pl-2">If a blue box says "Windows protected your PC", click <u>More info</u> then <u>Run anyway</u>.</li>
                     </ol>
                 </div>
                 
@@ -302,14 +309,20 @@
                     </div>
                     <ol class="space-y-6 text-gray-400 text-sm list-decimal list-inside marker:text-white marker:font-bold">
                         <li class="pl-2">Download and unzip <b>Mac_App_MagicTracker.zip</b>.</li>
-                        <li class="pl-2">Drag <b>Magic Tracker.app</b> into your <b>Applications</b> folder.</li>
+                        <li class="pl-2">Drag <b>Magic Tracker.app</b> into your <b>Applications</b> folder. (Mandatory)</li>
                         <li class="pl-2">
-                            <b>Important Security Step:</b> Open Terminal and paste this command to fix "Damaged/Unverified" error:
-                            <div class="mt-3 bg-black/80 p-3 rounded border border-white/10 font-mono text-[11px] text-green-400 select-all break-all">
-                                sudo xattr -rd com.apple.quarantine /Applications/"Magic Tracker.app"
-                            </div>
+                            <b>Fix "App is Damaged" Error (Required):</b>
+                            <ul class="list-disc pl-5 mt-2 space-y-2 text-gray-500">
+                                <li>Open <b>Terminal</b> (Cmd + Space, search Terminal).</li>
+                                <li>Copy and paste this command exactly:
+                                    <div class="mt-2 bg-black/80 p-3 rounded border border-white/10 font-mono text-[11px] text-green-400 select-all break-all">
+                                        sudo xattr -rd com.apple.quarantine "/Applications/Magic Tracker.app"
+                                    </div>
+                                </li>
+                                <li>Press <b>Enter</b>. Type your Mac password (it will be invisible) and press <b>Enter</b> again.</li>
+                            </ul>
                         </li>
-                        <li class="pl-2">Open the app. Go to <b>System Settings > Privacy & Security > Accessibility</b> and allow Magic Tracker.</li>
+                        <li class="pl-2">Go to <b>System Settings > Privacy & Security > Accessibility</b>. Remove any old entry and add Magic Tracker again.</li>
                     </ol>
                 </div>
             </div>
@@ -319,7 +332,7 @@
             <div class="max-w-2xl mx-auto">
                 <h2 class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-12">Lead Architect</h2>
                 
-                <a href="https://www.linkedin.com/in/anupam-sahoo-39a694355/" target="_blank" class="dev-card inline-block relative group cursor-pointer glass-panel rounded-2xl p-2 border-0">
+                <a href="https://www.linkedin.com/in/anupam-sahoo-39a694355/" target="_blank" class="click-anim dev-card inline-block relative group cursor-pointer glass-panel rounded-2xl p-2 border-0">
                     <div class="w-64 h-80 md:w-72 md:h-96 rounded-xl overflow-hidden relative border border-white/10">
                         <img src="me.png" alt="Anupam Sahoo" class="w-full h-full object-cover transition-transform duration-700 saturate-[0.8] group-hover:saturate-100">
                         <div class="dev-overlay absolute inset-0 bg-black/40 flex items-center justify-center backdrop-blur-[2px]">
@@ -351,21 +364,18 @@
             const introSub = document.getElementById('intro-sub');
             const mainContent = document.getElementById('main-content');
             
-            // 2. Logic for Show More / Show Less Features
+            // Logic for Show More / Show Less Features
             const toggleBtn = document.getElementById('toggle-features-btn');
             const extraFeatures = document.getElementById('extra-features');
             const featuresSection = document.getElementById('features');
 
             toggleBtn.addEventListener('click', () => {
                 if (extraFeatures.classList.contains('hidden')) {
-                    // Open
                     extraFeatures.classList.remove('hidden');
                     toggleBtn.innerText = 'Show Less';
                 } else {
-                    // Close
                     extraFeatures.classList.add('hidden');
                     toggleBtn.innerText = 'View All Features';
-                    // Optional: smooth scroll back to features section
                     featuresSection.scrollIntoView({ behavior: 'smooth' });
                 }
             });
@@ -384,25 +394,21 @@
                 mainContent.style.opacity = '1';
             }, 4000);
 
-            // 3. BACKGROUND PARALLAX (MOUSE + SCROLL - FIXED ISSUE)
+            // BACKGROUND PARALLAX (MOUSE + SCROLL)
             const bg = document.getElementById('interactive-bg');
             let mouseX = 0, mouseY = 0;
             
-            // Track Mouse
             document.addEventListener('mousemove', (e) => {
                 mouseX = (window.innerWidth - e.pageX * 2) / 90;
                 mouseY = (window.innerHeight - e.pageY * 2) / 90;
                 updateBg();
             });
 
-            // Track Scroll
             document.addEventListener('scroll', () => {
                 updateBg();
             });
 
             function updateBg() {
-                // We use a small scroll factor. Since the element is 'fixed', 
-                // we simulate movement without it running off screen.
                 const scrollOffset = window.scrollY * 0.05; 
                 bg.style.transform = `scale(1.25) translate(${mouseX}px, ${mouseY - scrollOffset}px)`;
             }
