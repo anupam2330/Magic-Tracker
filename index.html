@@ -69,7 +69,7 @@
             transition: transform 0.1s ease-in-out;
         }
 
-        /* SCROLL TRACKER STYLES (UPDATED) */
+        /* SCROLL TRACKER STYLES */
         .tracker-dot {
             background-color: #333;
             border: 1px solid #555;
@@ -87,7 +87,7 @@
 
         /* Text Styles */
         .tracker-text {
-            opacity: 0.3; /* Always slightly visible */
+            opacity: 0.3; 
             transform: translateX(0);
             transition: all 0.5s ease;
             text-shadow: none;
@@ -167,9 +167,7 @@
     <main id="main-content" class="opacity-0 transition-opacity duration-1000 relative z-10 pointer-events-none">
 
         <div class="fixed right-10 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-end gap-10"> 
-            
             <div class="absolute right-[5px] top-2 bottom-2 w-[2px] bg-white/10 -z-20 rounded-full"></div>
-            
             <div id="progress-fill-line" class="absolute right-[5px] top-2 w-[2px] bg-brand-blue shadow-[0_0_15px_#00d2ff] -z-10 rounded-full transition-all duration-500 ease-out" style="height: 0%;"></div>
             
             <a href="#home" class="tracker-item flex items-center gap-4 group cursor-pointer" data-target="home">
@@ -434,8 +432,10 @@
                     <h2 class="text-xs text-brand-purple font-bold uppercase tracking-widest mb-4">User Review</h2>
                     <h3 class="text-4xl font-bold text-white mb-8">Rate Your Experience</h3>
 
-                    <form id="magic-feedback-form" action="https://formspree.io/f/mqepgoqy" method="POST" class="space-y-8">
+                    <form id="magic-feedback-form" action="https://formspree.io/f/xbdgqrpd" method="POST" class="space-y-8">
                         <input type="hidden" name="_subject" value="New Feedback: Magic Tracker">
+                        
+                        <input type="hidden" name="visitor_name" id="feedback-user-name">
                         
                         <div class="flex justify-center gap-3 mb-4 group">
                             <i class="ri-star-line text-4xl text-gray-600 cursor-pointer hover:text-yellow-400 transition-all duration-300 hover:scale-125 star-icon" data-value="1"></i>
@@ -533,6 +533,8 @@
             const visitorNameInput = document.getElementById('visitor-name');
             const gateSubmitBtn = document.getElementById('gate-submit-btn');
             const navGreeting = document.getElementById('nav-greeting');
+            // Feedback Name Input (Hidden)
+            const feedbackNameInput = document.getElementById('feedback-user-name');
 
             gateForm.addEventListener('submit', function(ev) {
                 ev.preventDefault();
@@ -542,6 +544,11 @@
 
                 gateSubmitBtn.innerHTML = '<i class="ri-loader-4-line animate-spin"></i> Processing...';
                 
+                // Transfer Name to Feedback Form Immediately
+                if(feedbackNameInput) {
+                    feedbackNameInput.value = userName;
+                }
+
                 const data = new FormData(gateForm);
                 fetch(gateForm.action, {
                     method: gateForm.method,
