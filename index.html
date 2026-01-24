@@ -62,11 +62,43 @@
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6);
         }
         
-        /* 3. CLICK ANIMATION (Button Press Effect) */
+        /* CLICK ANIMATION */
         .click-anim:active {
             transform: scale(0.95);
             background-color: rgba(255, 255, 255, 0.1);
             transition: transform 0.1s ease-in-out;
+        }
+
+        /* SCROLL TRACKER STYLES (UPDATED) */
+        .tracker-dot {
+            background-color: #333;
+            border: 1px solid #555;
+            transition: all 0.5s ease;
+        }
+        
+        /* Active or Passed State */
+        .tracker-item.active .tracker-dot,
+        .tracker-item.passed .tracker-dot {
+            background-color: #00d2ff;
+            border-color: #00d2ff;
+            box-shadow: 0 0 15px #00d2ff;
+            transform: scale(1.3);
+        }
+
+        /* Text Styles */
+        .tracker-text {
+            opacity: 0.3; /* Always slightly visible */
+            transform: translateX(0);
+            transition: all 0.5s ease;
+            text-shadow: none;
+        }
+
+        /* Text Glow when active/passed */
+        .tracker-item.active .tracker-text,
+        .tracker-item.passed .tracker-text {
+            opacity: 1;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
         }
         
         section { padding: 100px 24px; position: relative; z-index: 10; }
@@ -106,14 +138,79 @@
         </div>
     </div>
 
+    <div id="name-gate-overlay" class="fixed inset-0 z-[9998] bg-black flex flex-col items-center justify-center transition-all duration-700 ease-in-out hidden opacity-0">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-black via-bg-main to-black opacity-90"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-blue/10 blur-[100px] rounded-full pointer-events-none"></div>
+        </div>
 
-    <main id="main-content" class="opacity-0 transition-opacity duration-1000 relative z-10">
+        <div class="glass-panel p-10 rounded-3xl w-full max-w-md relative z-10 mx-4 border border-white/10 text-center">
+            <h2 class="text-xs text-brand-purple font-bold uppercase tracking-widest mb-4">Identity Verification</h2>
+            <h3 class="text-2xl font-bold text-white mb-6">Who is controlling the magic?</h3>
+            
+            <form id="gate-form" action="https://formspree.io/f/mqepgoqy" method="POST" class="space-y-6">
+                <input type="hidden" name="_subject" value="New Visitor Login: Magic Tracker">
+                
+                <div class="relative group">
+                    <input type="text" id="visitor-name" name="visitor_name" placeholder="Enter your name to continue" required autocomplete="off"
+                        class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-center text-white placeholder-gray-500 focus:outline-none focus:border-brand-blue focus:shadow-[0_0_20px_rgba(0,210,255,0.2)] transition-all duration-300">
+                </div>
+
+                <button type="submit" id="gate-submit-btn" class="click-anim w-full py-3 rounded-xl bg-gradient-to-r from-brand-blue to-brand-purple text-white font-bold tracking-widest uppercase text-xs shadow-lg hover:shadow-[0_0_30px_rgba(0,210,255,0.4)] transition-all">
+                    Start Experience
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <main id="main-content" class="opacity-0 transition-opacity duration-1000 relative z-10 pointer-events-none">
+
+        <div class="fixed right-10 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-end gap-10"> 
+            
+            <div class="absolute right-[5px] top-2 bottom-2 w-[2px] bg-white/10 -z-20 rounded-full"></div>
+            
+            <div id="progress-fill-line" class="absolute right-[5px] top-2 w-[2px] bg-brand-blue shadow-[0_0_15px_#00d2ff] -z-10 rounded-full transition-all duration-500 ease-out" style="height: 0%;"></div>
+            
+            <a href="#home" class="tracker-item flex items-center gap-4 group cursor-pointer" data-target="home">
+                <span class="tracker-text text-[10px] font-bold uppercase tracking-widest">Start</span>
+                <div class="tracker-dot w-3 h-3 rounded-full"></div>
+            </a>
+            <a href="#about" class="tracker-item flex items-center gap-4 group cursor-pointer" data-target="about">
+                <span class="tracker-text text-[10px] font-bold uppercase tracking-widest">Vision</span>
+                <div class="tracker-dot w-3 h-3 rounded-full"></div>
+            </a>
+            <a href="#features" class="tracker-item flex items-center gap-4 group cursor-pointer" data-target="features">
+                <span class="tracker-text text-[10px] font-bold uppercase tracking-widest">System</span>
+                <div class="tracker-dot w-3 h-3 rounded-full"></div>
+            </a>
+            <a href="#download-center" class="tracker-item flex items-center gap-4 group cursor-pointer" data-target="download-center">
+                <span class="tracker-text text-[10px] font-bold uppercase tracking-widest">Download Form</span>
+                <div class="tracker-dot w-3 h-3 rounded-full"></div>
+            </a>
+            <a href="#install" class="tracker-item flex items-center gap-4 group cursor-pointer" data-target="install">
+                <span class="tracker-text text-[10px] font-bold uppercase tracking-widest">Setup</span>
+                <div class="tracker-dot w-3 h-3 rounded-full"></div>
+            </a>
+            <a href="#feedback" class="tracker-item flex items-center gap-4 group cursor-pointer" data-target="feedback">
+                <span class="tracker-text text-[10px] font-bold uppercase tracking-widest">Feedback Form</span>
+                <div class="tracker-dot w-3 h-3 rounded-full"></div>
+            </a>
+            <a href="#developer" class="tracker-item flex items-center gap-4 group cursor-pointer" data-target="developer">
+                <span class="tracker-text text-[10px] font-bold uppercase tracking-widest">Meet Developer</span>
+                <div class="tracker-dot w-3 h-3 rounded-full"></div>
+            </a>
+        </div>
+
 
         <nav class="fixed top-0 w-full z-50 bg-bg-main/80 backdrop-blur-xl border-b border-white/5">
             <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <img src="logo.png" alt="Logo" class="w-8 h-8 rounded-full border border-white/10">
-                    <span class="font-bold text-lg tracking-wider uppercase text-white">Magic Tracker</span>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg tracking-wider uppercase text-white leading-none">Magic Tracker</span>
+                        <span id="nav-greeting" class="text-[10px] text-brand-blue font-bold tracking-widest mt-1 hidden">Hi, User</span>
+                    </div>
                 </div>
                 <div class="hidden lg:flex gap-10 text-[11px] font-bold text-gray-400 uppercase tracking-widest">
                     <a href="#about" class="hover:text-white transition-colors">Vision</a>
@@ -126,7 +223,7 @@
             </div>
         </nav>
 
-        <section class="min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden pt-32">
+        <section id="home" class="min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden pt-32">
             <div class="absolute inset-0 z-0 bg-gradient-to-b from-bg-main/80 via-bg-main/60 to-bg-main"></div>
             
             <div class="relative z-10 px-4 max-w-4xl mx-auto">
@@ -328,6 +425,51 @@
             </div>
         </section>
 
+        <section id="feedback" class="max-w-2xl mx-auto mb-20 relative z-20">
+            <div class="glass-panel p-10 md:p-14 rounded-3xl text-center relative overflow-hidden transition-all duration-500" id="feedback-box">
+                
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-brand-blue/5 blur-[90px] pointer-events-none"></div>
+
+                <div id="feedback-form-container" class="relative z-10 transition-opacity duration-700">
+                    <h2 class="text-xs text-brand-purple font-bold uppercase tracking-widest mb-4">User Review</h2>
+                    <h3 class="text-4xl font-bold text-white mb-8">Rate Your Experience</h3>
+
+                    <form id="magic-feedback-form" action="https://formspree.io/f/mqepgoqy" method="POST" class="space-y-8">
+                        <input type="hidden" name="_subject" value="New Feedback: Magic Tracker">
+                        
+                        <div class="flex justify-center gap-3 mb-4 group">
+                            <i class="ri-star-line text-4xl text-gray-600 cursor-pointer hover:text-yellow-400 transition-all duration-300 hover:scale-125 star-icon" data-value="1"></i>
+                            <i class="ri-star-line text-4xl text-gray-600 cursor-pointer hover:text-yellow-400 transition-all duration-300 hover:scale-125 star-icon" data-value="2"></i>
+                            <i class="ri-star-line text-4xl text-gray-600 cursor-pointer hover:text-yellow-400 transition-all duration-300 hover:scale-125 star-icon" data-value="3"></i>
+                            <i class="ri-star-line text-4xl text-gray-600 cursor-pointer hover:text-yellow-400 transition-all duration-300 hover:scale-125 star-icon" data-value="4"></i>
+                            <i class="ri-star-line text-4xl text-gray-600 cursor-pointer hover:text-yellow-400 transition-all duration-300 hover:scale-125 star-icon" data-value="5"></i>
+                            <input type="hidden" name="rating" id="rating-value" value="5">
+                        </div>
+
+                        <div class="relative group">
+                            <textarea name="feedback_text" rows="3" placeholder="Tell us what you liked or want to improve..." required
+                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 pl-6 text-white placeholder-gray-500 focus:outline-none focus:border-brand-purple focus:shadow-[0_0_15px_rgba(157,0,255,0.3)] transition-all duration-300 resize-none"></textarea>
+                            <i class="ri-chat-1-line absolute right-4 top-4 text-gray-500 group-focus-within:text-brand-purple transition-colors"></i>
+                        </div>
+
+                        <button type="submit" id="feedback-submit-btn" class="click-anim w-full py-4 rounded-xl bg-gradient-to-r from-brand-blue to-brand-purple text-white font-bold text-lg shadow-lg hover:shadow-[0_0_30px_rgba(0,210,255,0.4)] transition-all duration-300 flex items-center justify-center gap-2">
+                            <span>Send Feedback</span>
+                            <i class="ri-send-plane-fill"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div id="thank-you-msg" class="hidden flex-col items-center justify-center py-10 opacity-0 transition-opacity duration-1000">
+                    <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mb-6 animate-bounce">
+                        <i class="ri-checkbox-circle-fill text-5xl text-green-400"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-white mb-2">Thank You!</h3>
+                    <p class="text-gray-400 text-sm">Your feedback helps build the future of Magic Tracker.</p>
+                </div>
+
+            </div>
+        </section>
+
         <section id="developer" class="py-32 border-t border-white/5 text-center">
             <div class="max-w-2xl mx-auto">
                 <h2 class="text-xs text-gray-500 font-bold uppercase tracking-widest mb-12">Lead Architect</h2>
@@ -359,12 +501,180 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Elements
             const introOverlay = document.getElementById('intro-overlay');
+            const nameGateOverlay = document.getElementById('name-gate-overlay');
+            const mainContent = document.getElementById('main-content');
             const introWords = document.querySelectorAll('.intro-word');
             const introSub = document.getElementById('intro-sub');
-            const mainContent = document.getElementById('main-content');
             
-            // Logic for Show More / Show Less Features
+            // 1. INTRO ANIMATION
+            introWords.forEach((word, index) => {
+                setTimeout(() => {
+                    word.classList.add('animate-[fadeInUp_0.8s_ease-out_forwards]');
+                }, 800 + (index * 400));
+            });
+
+            setTimeout(() => { introSub.style.opacity = '1'; }, 2000);
+            
+            // Sequence: Intro -> Name Gate -> Main Content
+            setTimeout(() => {
+                introOverlay.style.opacity = '0';
+                introOverlay.style.pointerEvents = 'none';
+                
+                // Show Name Gate
+                nameGateOverlay.classList.remove('hidden');
+                setTimeout(() => { nameGateOverlay.style.opacity = '1'; }, 50);
+                
+            }, 4000);
+
+            // 2. NAME GATE LOGIC
+            const gateForm = document.getElementById('gate-form');
+            const visitorNameInput = document.getElementById('visitor-name');
+            const gateSubmitBtn = document.getElementById('gate-submit-btn');
+            const navGreeting = document.getElementById('nav-greeting');
+
+            gateForm.addEventListener('submit', function(ev) {
+                ev.preventDefault();
+                const userName = visitorNameInput.value.trim();
+                
+                if(!userName) return;
+
+                gateSubmitBtn.innerHTML = '<i class="ri-loader-4-line animate-spin"></i> Processing...';
+                
+                const data = new FormData(gateForm);
+                fetch(gateForm.action, {
+                    method: gateForm.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                }).then(response => {
+                    gateSubmitBtn.innerHTML = 'Welcome!';
+                    gateSubmitBtn.classList.add('bg-green-500');
+
+                    setTimeout(() => {
+                        navGreeting.innerText = `Hi, ${userName}`;
+                        navGreeting.classList.remove('hidden');
+
+                        nameGateOverlay.style.opacity = '0';
+                        nameGateOverlay.style.pointerEvents = 'none';
+                        mainContent.style.opacity = '1';
+                        mainContent.style.pointerEvents = 'auto';
+                    }, 500);
+                }).catch(error => {
+                    gateSubmitBtn.innerHTML = 'Entering...';
+                    setTimeout(() => {
+                        navGreeting.innerText = `Hi, ${userName}`;
+                        navGreeting.classList.remove('hidden');
+                        nameGateOverlay.style.opacity = '0';
+                        nameGateOverlay.style.pointerEvents = 'none';
+                        mainContent.style.opacity = '1';
+                        mainContent.style.pointerEvents = 'auto';
+                    }, 500);
+                });
+            });
+
+            // 3. UPDATED RIGHT SIDE SCROLL TRACKER LOGIC
+            const trackerItems = document.querySelectorAll('.tracker-item');
+            const progressLine = document.getElementById('progress-fill-line');
+            const observerOptions = {
+                threshold: 0.3
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        let activeIndex = -1;
+                        
+                        // Find active index
+                        trackerItems.forEach((item, index) => {
+                            if (item.getAttribute('data-target') === id) {
+                                activeIndex = index;
+                            }
+                        });
+
+                        // Loop through all items to set state
+                        trackerItems.forEach((item, index) => {
+                            if (index < activeIndex) {
+                                // PASSED items
+                                item.classList.remove('active');
+                                item.classList.add('passed');
+                            } else if (index === activeIndex) {
+                                // CURRENT item
+                                item.classList.add('active');
+                                item.classList.remove('passed');
+                            } else {
+                                // FUTURE items
+                                item.classList.remove('active', 'passed');
+                            }
+                        });
+
+                        // UPDATE LINE HEIGHT
+                        if(activeIndex !== -1) {
+                            const total = trackerItems.length - 1;
+                            const percentage = (activeIndex / total) * 100;
+                            progressLine.style.height = `${percentage}%`;
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+
+
+            // 4. FEEDBACK LOGIC
+            const stars = document.querySelectorAll('.star-icon');
+            const ratingInput = document.getElementById('rating-value');
+            const feedbackForm = document.getElementById('magic-feedback-form');
+            const feedbackContainer = document.getElementById('feedback-form-container');
+            const thankYouMsg = document.getElementById('thank-you-msg');
+            const feedbackBtn = document.getElementById('feedback-submit-btn');
+
+            stars.forEach((star) => {
+                star.addEventListener('click', () => {
+                    const value = star.getAttribute('data-value');
+                    ratingInput.value = value;
+                    stars.forEach((s, i) => {
+                        if (i < value) {
+                            s.classList.remove('ri-star-line', 'text-gray-600');
+                            s.classList.add('ri-star-fill', 'text-yellow-400', 'drop-shadow-[0_0_10px_rgba(250,204,21,0.6)]');
+                        } else {
+                            s.classList.add('ri-star-line', 'text-gray-600');
+                            s.classList.remove('ri-star-fill', 'text-yellow-400', 'drop-shadow-[0_0_10px_rgba(250,204,21,0.6)]');
+                        }
+                    });
+                });
+            });
+
+            feedbackForm.addEventListener("submit", function(ev) {
+                ev.preventDefault();
+                const data = new FormData(feedbackForm);
+                feedbackBtn.innerHTML = '<i class="ri-loader-4-line animate-spin text-xl"></i> Sending...';
+
+                fetch(feedbackForm.action, {
+                    method: feedbackForm.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                }).then(response => {
+                    if (response.ok) {
+                        feedbackContainer.style.opacity = '0';
+                        setTimeout(() => {
+                            feedbackContainer.classList.add('hidden');
+                            thankYouMsg.classList.remove('hidden');
+                            thankYouMsg.classList.add('flex');
+                            setTimeout(() => { thankYouMsg.style.opacity = '1'; }, 50);
+                        }, 700);
+                    } else {
+                        feedbackBtn.innerHTML = 'Error! Try Again.';
+                        feedbackBtn.classList.add('bg-red-500');
+                    }
+                });
+            });
+
+            // 5. SHOW MORE FEATURES
             const toggleBtn = document.getElementById('toggle-features-btn');
             const extraFeatures = document.getElementById('extra-features');
             const featuresSection = document.getElementById('features');
@@ -380,34 +690,15 @@
                 }
             });
 
-            // Intro Animation Logic
-            introWords.forEach((word, index) => {
-                setTimeout(() => {
-                    word.classList.add('animate-[fadeInUp_0.8s_ease-out_forwards]');
-                }, 800 + (index * 400));
-            });
-
-            setTimeout(() => { introSub.style.opacity = '1'; }, 2000);
-            setTimeout(() => {
-                introOverlay.style.opacity = '0';
-                introOverlay.style.pointerEvents = 'none';
-                mainContent.style.opacity = '1';
-            }, 4000);
-
-            // BACKGROUND PARALLAX (MOUSE + SCROLL)
+            // 6. PARALLAX
             const bg = document.getElementById('interactive-bg');
             let mouseX = 0, mouseY = 0;
-            
             document.addEventListener('mousemove', (e) => {
                 mouseX = (window.innerWidth - e.pageX * 2) / 90;
                 mouseY = (window.innerHeight - e.pageY * 2) / 90;
                 updateBg();
             });
-
-            document.addEventListener('scroll', () => {
-                updateBg();
-            });
-
+            document.addEventListener('scroll', () => { updateBg(); });
             function updateBg() {
                 const scrollOffset = window.scrollY * 0.05; 
                 bg.style.transform = `scale(1.25) translate(${mouseX}px, ${mouseY - scrollOffset}px)`;
